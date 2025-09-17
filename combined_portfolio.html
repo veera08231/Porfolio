@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Removed Bootstrap CSS -->
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333; /* Dark gray for good contrast */
+            background-color: #f4f7f6; /* Light, neutral background */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0; /* Start hidden */
+            padding: 40px 20px; /* Increased padding */
+            margin: 20px auto; /* Center sections and add vertical margin */
+            max-width: 960px; /* Max width for content */
+            background-color: #ffffff; /* White background for content sections */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: left; /* Default text alignment to left for content */
+        }
+
+        .content-section h1, .content-section h2 {
+            text-align: center; /* Center headings */
+            color: #0056b3; /* A slightly darker, professional blue */
+            margin-bottom: 20px;
+        }
+
+        .content-section p, .content-section ul {
+            color: #555; /* Slightly darker text for better readability */
+            text-align: left; /* Left-align paragraphs and lists for better readability */
+        }
+
+        /* Navigation Bar */
+        .site-nav {
+            background-color: #e9ecef; /* Lighter, softer background */
+            padding: 15px 20px; /* Increased padding */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+        }
+        .site-brand {
+            color: #0056b3; /* Consistent blue for brand */
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        .nav-list {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-item {
+            margin-left: 25px; /* Spacing between nav items */
+        }
+        .nav-item a {
+            color: #007bff; /* Primary blue */
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
+        }
+        .nav-item a:hover {
+            color: #003d80 !important; /* Deeper blue on hover */
+            text-decoration: underline !important;
+        }
+
+        /* Call to Action Buttons */
+        .cta-button, button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px; /* Slightly larger padding */
+            text-decoration: none;
+            border-radius: 5px;
+            border: none; /* Remove default border */
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+            display: inline-block; /* Ensure it behaves like a block for margin/padding */
+        }
+        .cta-button:hover, button[type="submit"]:hover {
+            background-color: #0056b3 !important; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the form elements */
+            width: 100%;
+        }
+        .form-field {
+            margin-bottom: 20px; /* Increased margin */
+            width: 100%;
+            max-width: 450px; /* Slightly wider form fields */
+            text-align: left; /* Align labels to the left within the form field */
+        }
+        .form-field label {
+            display: block; /* Label on its own line */
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc; /* Subtle border */
+            border-radius: 4px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #007bff; /* Highlight on focus */
+            outline: none; /* Remove default outline */
+        }
+        textarea.form-input {
+            min-height: 100px; /* Make textarea taller */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        /* Specific Section Adjustments */
+        #profile h2 {
+            margin-top: 30px; /* More space before skills heading */
+        }
+        #profile p {
+            margin-bottom: 10px; /* Less space between skill percentages */
+            text-align: left; /* Left-align skill percentages for better readability */
+        }
+        .achievement {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee; /* Separator for achievements */
+        }
+        .achievement:last-child {
+            border-bottom: none; /* No separator for the last achievement */
+        }
+        .achievement h2 {
+            text-align: left; /* Achievements titles left-aligned */
+            color: #0056b3;
+            margin-bottom: 5px;
+        }
+        .achievement p {
+            text-align: left; /* Achievement descriptions left-aligned */
+            color: #555;
+        }
+        #interests ul {
+            padding-left: 0; /* Remove default padding */
+            text-align: center; /* Center the list itself */
+        }
+        #interests li {
+            margin-bottom: 10px;
+            display: inline-block; /* Display list items inline */
+            margin: 0 15px; /* Add horizontal spacing */
+        }
+        #interests ul li:first-child {
+            margin-left: 0;
+        }
+        #interests ul li:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="site-nav">
+        <div class="site-brand">My Website</div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#home"> Home </a>
+            </li>
+            <li class="nav-item">
+                <a href="#about"> About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#profile"> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="#achievements"> Achievements</a>
+            </li>
+             <li class="nav-item">
+                <a href="#interests"> Interests</a>
+            </li>
+             <li class="nav-item">
+                <a href="#contact"> Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Sections -->
+    <div class="content-section" id="home">
+        <h1>Welcome! </h1>
+        <p>Explore my portfolio to learn more about my skills, projects, and interests. Feel free to reach out through the contact section!</p>
+    </div>
+
+    <div class="content-section" id="about">
+        <h1>About Me</h1>
+        <p>
+            Name: Veera Karthikeyan.R<br>
+            Education: Bachelor of Engineering in Computer Science<br>
+            Institution: KIOT (Knowledge Institute of Technology)<br>
+            Year of Graduation: 2027<br>
+            Skills: Programming (Python, Java, C++), Web Development (HTML, CSS, JavaScript), Database Management, Cybersecurity, AI & Machine Learning<br>
+            Certifications: [Any relevant certifications like AWS, Google Cloud, etc.]<br>
+            Projects:<br>
+            - Pet Feeder: An automated system that dispenses food at scheduled times, ensuring pets are fed properly.<br>
+            Career Goals: Aspiring software engineer passionate about AI, web development, and cybersecurity.<br>
+            Hobbies & Interests: Coding, tech blogging, competitive programming, open-source contributions, gaming, reading tech articles.
+        </p>
+    </div>
+
+    <div class="content-section" id="profile">
+        <h1>Profile</h1>
+        <p>
+            Name: Veera<br>
+            Education: Bachelor of Engineering in Computer Science<br>
+            Institution: KIOT (Graduating 2027)<br>
+            Key Strengths: Problem-solving, programming (Python, Java, C++), web development, cybersecurity, AI applications
+        </p>
+        <h2>Skills</h2>
+        <p>Python: 90%</p>
+        <p>Java: 80%</p>
+        <p>C++: 70%</p>
+        <p>Web Development: 85%</p>
+        <p>Cybersecurity: 75%</p>
+        <p>AI Applications: 65%</p>
+        <a href="#" class="cta-button">Download Resume</a>
+    </div>
+
+    <div class="content-section" id="achievements">
+        <h1>Achievements</h1>
+        <div class="achievement">
+            <h2>Pet Feeder Project</h2>
+            <p>Automated feeding system for pets</p>
+        </div>
+        <div class="achievement">
+            <h2>Coding Competition Placements</h2>
+            <p>Participated and ranked in tech contests</p>
+        </div>
+        <div class="achievement">
+            <h2>Technical Certifications</h2>
+            <p>Achievements in AI, cybersecurity, or cloud computing</p>
+        </div>
+    </div>
+
+    <div class="content-section" id="interests">
+        <h1>Interests</h1>
+        <ul>
+            <li>AI & software development</li>
+            <li>Competitive programming</li>
+            <li>Gaming & tech blogging</li>
+        </ul>
+    </div>
+
+    <div class="content-section" id="contact">
+        <h1>Contact Us</h1>
+        <form>
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" class="form-input" id="name" placeholder="Enter name">
+            </div>
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input type="email" class="form-input" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-field">
+                <label for="message">Message</label>
+                <textarea class="form-input" id="message" rows="3"></textarea>
+            </div>
+            <button type="submit" class="cta-button">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
